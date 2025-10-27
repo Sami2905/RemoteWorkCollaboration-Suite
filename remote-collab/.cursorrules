@@ -1,0 +1,30 @@
+# Goals
+- Real-time collab suite with secure sockets (JWT + membership), persisted Yjs, and single socket connection.
+
+# Must
+- Do not expose SUPABASE_SERVICE_ROLE_KEY to web. Only on API.
+- All REST requests include Authorization: Bearer <access_token>.
+- All socket connections use SocketProvider; do not call socket.connect() inside features.
+- Validate all new REST & socket payloads with Zod (from @collab/shared).
+- Use TipTap + Yjs (persisted via LevelDB). Do not replace with plain text syncing.
+
+# Realtime conventions
+- Use events from @collab/shared/socketEvents.
+- All socket handlers verify membership in API.
+- Whiteboard: keep authoritative state with TTL; include request_state bootstrap.
+
+# Tasks
+- Persist (columnId, order) with Prisma transaction. Use existing indexes.
+
+# WebRTC
+- Use simple-peer with targeted signaling; keep ICE restart & rejoin utilities.
+
+# Frontend
+- Lazy-load heavy pages with Suspense.
+- Use React Query loading/error states on data pages.
+- Animate transform/opacity only (Framer Motion).
+
+# Code quality
+- Use ErrorBoundary around RouterProvider.
+- Keep one socket connection per workspace (SocketProvider).
+

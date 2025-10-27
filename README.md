@@ -79,5 +79,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - [TipTap](https://tiptap.dev/) - The headless editor framework
 - [Yjs](https://docs.yjs.dev/) - CRDT for real-time collaboration
-- [Chakra UI](https://chakra-ui.com/) - Simple, modular and accessible component library
-"# RemoteWorkCollaboration-Suite" 
+- [Chakra UI](https://chakra-ui.com/) - Simple, modular and accessible component library 

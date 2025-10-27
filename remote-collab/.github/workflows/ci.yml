@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    env:
+      GIT_SHA: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: Install
+        run: pnpm -w install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm -w typecheck
+
+      - name: Lint
+        run: pnpm -w lint
+
+      - name: Build
+        run: pnpm -w build
+
+      - name: Stamp version
+        run: echo "GIT_SHA=${GIT_SHA}" >> $GITHUB_ENV
